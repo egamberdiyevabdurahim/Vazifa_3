@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home Page</title>
+</head>
+<body>
+{% if request.user.is_authenticated%}
+<h2>Salom  {{request.user.username}}</h2><hr>
+<a href="{% url 'Logout'%}"><h2>Log-Out</h2></a>
+	{% for x in odomlar%}
+<h2>{{x.username}}</h2><hr>
+
+<a href="{% url 'profile' x.id%}">Profile</a>
+	{% endfor %}
+{% else %}
+<a href="{% url 'signup'%}"><h2>Sign-Up</h2></a><hr>
+<a href="{% url 'signin'%}"><h2>Login</h2></a>
+{% endif %}
+</body>
+</html>
